@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<string.h>
 #include<locale.h>
+#include <stdlib.h>
+
 
 //protótipo da função
 int valor (char plano, char tipoAdesao[6]);
