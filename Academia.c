@@ -52,7 +52,7 @@ int main()
     scanf ("%s",periodo);
     
     printf("Digite o nome do cliente\n");
-    scanf ("%s",nome);
+    scanf ("\n%[^\n]s",nome);
     
     if ((plano == 'd') || (plano == 'e')){
         strcpy(tipoAdesao, "anual");
