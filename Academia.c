@@ -12,62 +12,73 @@ int valor (char plano, char tipoAdesao[10], char periodo[8]);
 
 int main()
 {
-    setlocale(LC_ALL,"");
+    setlocale(LC_ALL,""); //funcao para permitir caracteres especiais
+
+    //variáveis globais
     char plano; // tipo primitivo
     char periodo[8], nome[200], tipoAdesao[10], nomePlano[50];// estrutura de dados
+
+    //entrada escolha do plano
     printf("Bem vindo a @FiqueFit (:\n");
     printf("Escolha um dos planos:\na) Natação \nb) Musculação\nc) Treinamento Funcional\nd) Plano seco: musculação + funcional\ne) Plano molhado: musculação + natação\n");
     scanf ("%c",&plano);
     limparTerminal();
 
+    //processamento do input do plano
     switch (plano){
         case 'a':
-        strcpy(nomePlano,  "Natação");
-        break;
+           strcpy(nomePlano,  "Natação");
+           break;
         
         case 'b':
-        strcpy(nomePlano,  "Musculação");
-        break;
+           strcpy(nomePlano,  "Musculação");
+           break;
         
         case 'c':
-        strcpy(nomePlano,  "Treinamento Funcional");
-        break;
+           strcpy(nomePlano,  "Treinamento Funcional");
+           break;
         
         case 'd':
-        strcpy(nomePlano,  "Plano seco: musculação + funcional");
-        break;
+           strcpy(nomePlano,  "Plano seco: musculação + funcional");
+           break;
         
         case 'e':
-        strcpy(nomePlano,  "Plano molhado: musculação + natação");
-        break;
+           strcpy(nomePlano,  "Plano molhado: musculação + natação");
+           break;
         
         default:
-                printf("Opção inválida! Tente novamente.");
-                system("cls");
-                break;
+            printf("Opção inválida! Tente novamente.");
+            system("cls");
+            break;
         
     }
     
+    //entrada de dados
     printf("Digite o período desejado (dia ou noite)\n");
     scanf ("%s",periodo);
     
     printf("Digite o nome do cliente\n");
     scanf ("\n%[^\n]s",nome);
     
+    /*Como os planos 'd' e 'e' nao possuem plano mensal, ja processamos eles
+    como 'anual' aqui para economizar memória e linhas nas condicionais posteriores*/
     if ((plano == 'd') || (plano == 'e')){
         strcpy(tipoAdesao, "anual");
-    } else {
-    printf("Digite o tipo da adesão desejada (mensal ou anual)\n");
-    scanf ("%s",tipoAdesao);
+    }else{
+        printf("Digite o tipo da adesão desejada (mensal ou anual)\n");
+        scanf ("%s",tipoAdesao);
     }
     
+    //calculo do valor da mensalidade, chamando a funcao valor
     int valorMensal = valor(plano, tipoAdesao, periodo);
 
+    //saida de dados
     limparTerminal();
     printf("Cliente: %s\n", nome);
     printf("%s ( %s )\n", nomePlano, periodo);
     printf("Pagamento %s\n", tipoAdesao);
 
+    //processamento dos pagamentos baseado na escolha do tipo de adesao 
     if (strcmp(tipoAdesao, "anual") == 0) {
         int total = valorMensal * 12;
         printf("12 x R$ %i\n", valorMensal);
@@ -83,72 +94,76 @@ int main()
 //função preco
 int valor (char plano, char tipoAdesao[10], char periodo[8]){
 
-        int valor, total;
+    int valor, total;
 
-        switch(plano){
+    switch(plano){
 
         case 'a':
-        if ((strcmp(tipoAdesao, "mensal") == 0) && (strcmp(periodo, "dia") == 0)) {
-            valor = 220;
-        } else if ((strcmp(tipoAdesao, "mensal") == 0) && (strcmp(periodo, "noite") == 0)) {
-            valor = 270;
-        } else if (strcmp(tipoAdesao, "anual") == 0) {
-            valor = 198;
-        } else {
-            printf("Erro!\n");
-        }
-        break;
+           if ((strcmp(tipoAdesao, "mensal") == 0) && (strcmp(periodo, "dia") == 0)) {
+               valor = 220;
+           }else if((strcmp(tipoAdesao, "mensal") == 0) && (strcmp(periodo, "noite") == 0)) {
+               valor = 270;
+           }else if(strcmp(tipoAdesao, "anual") == 0) {
+               valor = 198;
+           }else{
+               printf("Erro!\n");
+           }
+
+           break;
         
         case 'b':
-        if (strcmp(tipoAdesao, "mensal") == 0) {
-            valor = 110;
-        } else if (strcmp(tipoAdesao, "anual") == 0) {
-            valor = 100;
-        } else {
-            printf("Erro!\n");
-        }
-        break;
+           if (strcmp(tipoAdesao, "mensal") == 0) {
+               valor = 110;
+           } else if (strcmp(tipoAdesao, "anual") == 0) {
+               valor = 100;
+           } else {
+               printf("Erro!\n");
+           }
 
+           break;
 
        case 'c':
-        if (strcmp(tipoAdesao, "mensal") == 0) {
-            valor = 200;
-        } else if (strcmp(tipoAdesao, "anual") == 0) {
-            valor = 180;
-        } else {
-            printf("Erro!\n");
-        }
-        break;
+          if (strcmp(tipoAdesao, "mensal") == 0) {
+              valor = 200;
+          }else if(strcmp(tipoAdesao, "anual") == 0) {
+              valor = 180;
+          }else{
+              printf("Erro!\n");
+          }
+
+          break;
 
         case 'd':
-        if (strcmp(tipoAdesao, "mensal") == 0) {
-            printf("Não há plano mensal para esta assinatura!");
-        } else if (strcmp(tipoAdesao, "anual") == 0) {
-            valor = 280;
-        } else {
-            printf("Erro!\n");
-        }
-        break;
+           if (strcmp(tipoAdesao, "mensal") == 0) {
+               printf("Não há plano mensal para esta assinatura!");
+           }else if(strcmp(tipoAdesao, "anual") == 0) {
+               valor = 280;
+           }else{
+               printf("Erro!\n");
+           }
+
+           break;
         
         case 'e':
         
-        if(strcmp(tipoAdesao, "mensal") == 0){
-                printf("Não há plano mensal para esta assinatura!");
-                }else if(strcmp(tipoAdesao, "anual") == 0){
-                        valor = 298;
-                }else{
-                        printf("Erro\n");
-                }
+           if(strcmp(tipoAdesao, "mensal") == 0){
+              printf("Não há plano mensal para esta assinatura!");
+           }else if(strcmp(tipoAdesao, "anual") == 0){
+              valor = 298;
+           }else{
+              printf("Erro\n")
+	   }
 
-        break;
+           break;
         
         default:
-                printf("Opção inválida! Tente novamente.\n");
-                break;
+           printf("Opção inválida! Tente novamente.\n");
+       
+           break;
         
     }
     
 
-        return valor;
+    return valor;
 
 }
