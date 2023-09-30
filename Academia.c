@@ -151,7 +151,7 @@ int valor (char plano, char tipoAdesao[10], char periodo[8]){
            }else if(strcmp(tipoAdesao, "anual") == 0){
               valor = 298;
            }else{
-              printf("Erro\n")
+              printf("Erro\n");
 	   }
 
            break;
