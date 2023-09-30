@@ -5,6 +5,11 @@
 
 void limparTerminal() {
     printf("\033[H\033[J"); 
+    //Sequencia de ANSI
+    // \033 inicia a sequencia de ANSI
+    // [H joga o mouse para a posição inicial (1,1) "Home"
+    // \033 inicia novamente
+    //[J deleta da posição do pause até o final do terminal
 }
 
 //protótipo da função
@@ -16,12 +21,30 @@ int main()
 
     //variáveis globais
     char plano; // tipo primitivo
-    char periodo[8], nome[200], tipoAdesao[10], nomePlano[50];// estrutura de dados
+    char periodo[8], nome[200], tipoAdesao[10], nomePlano[50], outro[10];// estrutura de dados
 
     //entrada escolha do plano
-    printf("Bem vindo a @FiqueFit (:\n");
+
+    limparTerminal();
+    printf("⠀⠀⠀⠀⠀⠀⣀⣀⣀⠀⣴⣿⣿⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣿⣿⣿⣷⡄⠀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⠶⠿⢶⣄⠀⢸⡿⠿⠀⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡿⠿⠀⡆⠀⣤⠀\n⠀⠀⠀⠀⠀⢸⣿⣿⣿⡇⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⡇⣾⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡿⠀⣴⠶⡶⠹⡄⢸⡇⠀⠀⡄⠀⣴⣤⡄⢠⡄⢠⡄⠀⣤⣦⠀⢸⡇⠀⠀⡄⠠⣿⠤\n⠀⠀⠀⠀⠀⢸⣿⣿⣿⡇⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⡇⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠁⣸⠃⢰⡇⠀⡇⢸⡟⠛⠀⡇⢸⡇⠀⡇⢸⡇⢸⡇⢸⣇⣸⡇⢸⡟⠛⠀⡇⠀⣿⠀\n⠀⠀⠀⢸⣿⢸⣿⣿⣿⡇⣿⣿⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣿⣿⣿⣿⣿⡇⣿⣿⣿⣿⡇⣿⡇⠀⠀⠀⠀⠀⠀⠀⢸⡄⠹⣦⠾⣀⠾⠀⢸⡇⠀⠀⡇⢸⡇⠀⡇⢸⡇⢸⡇⢸⡇⢠⡄⢸⡇⠀⠀⡇⠀⣿⠀\n⠀⠀⠀⢸⣿⢸⣿⣿⣿⡇⣿⣿⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣿⣿⣿⣿⣿⡇⣿⣿⣿⣿⡇⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠿⣄⣀⣀⣀⠀⠀⠘⠃⠀⠀⠃⠀⠛⠛⡇⠀⠛⠙⠃⠀⠛⠛⠀⠘⠃⠀⠀⠃⠀⠛⠛\n⠀⠀⠀⠀⠀⢸⣿⣿⣿⡇⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⡇⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n⠀⠀⠀⠀⠀⢸⣿⣿⣿⡇⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⡇⢿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀Bem-vindo(a)!\n⠀⠀⠀⠀⠀⠀⠉⠉⠉⠀⠻⣿⣿⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⡿⠃⠀⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀Aperte enter para entrar no programa:\n");
+
+    getchar();
+
+    while(1){
+    limparTerminal();
+    //printf("Bem vindo a @FiqueFit (:\n");
     printf("Escolha um dos planos:\na) Natação \nb) Musculação\nc) Treinamento Funcional\nd) Plano seco: musculação + funcional\ne) Plano molhado: musculação + natação\n");
-    scanf ("%c",&plano);
+    
+    //Enquanto a entrada não ser uma das opções desejadas ele irá retornar opção inválida
+    while(1){
+        scanf (" %c",&plano);
+        if((plano == 'a' || plano == 'b' || plano == 'c' || plano == 'd' || plano == 'e')){
+                break;
+            } else {
+                printf("Opção inválida. Tente novamente.\n");
+            }
+    }
+    
     limparTerminal();
 
     //processamento do input do plano
@@ -54,8 +77,17 @@ int main()
     }
     
     //entrada de dados
-    printf("Digite o período desejado (dia ou noite)\n");
-    scanf ("%s",periodo);
+    
+    //Enquanto o periodo for diferente de dia e noite ele retorna opção invalida
+    printf("Digite o período desejado (dia ou noite)\n"); 
+    while(1){
+        scanf (" %s", periodo);
+        if (strcmp(periodo, "dia") == 0 || strcmp(periodo, "noite") == 0){
+            break;
+        } else {
+            printf("Opção inválida. Tente novamente.\n");
+        }
+    }
     
     printf("Digite o nome do cliente\n");
     scanf ("\n%[^\n]s",nome);
@@ -66,7 +98,15 @@ int main()
         strcpy(tipoAdesao, "anual");
     }else{
         printf("Digite o tipo da adesão desejada (mensal ou anual)\n");
-        scanf ("%s",tipoAdesao);
+        while(1){
+            scanf (" %s",tipoAdesao);
+            if (strcmp(tipoAdesao, "mensal") == 0 || strcmp(tipoAdesao, "anual") == 0){
+                break;
+            } else {
+                printf("Opção inválida. Tente novamente.\n");
+            }
+        }
+        
     }
     
     //calculo do valor da mensalidade, chamando a funcao valor
@@ -87,9 +127,23 @@ int main()
         printf("R$ %i\n", valorMensal);
     }
 
+    //Cadastrar outro cliente
+    printf("Outro cliente? (sim/nao): ");
+    while(1){
+        scanf("%s", outro);
+        if (strcmp(outro, "sim") == 0 || strcmp(outro, "nao") == 0){
+            break;
+        }else{
+            printf("Opção inválida. Tente novamente.\n");
+        }
+    }
+
+    if (strcmp(outro, "nao") == 0){
+        break;   
+    }
+    }
     return 0;
 }
-
 
 //função preco
 int valor (char plano, char tipoAdesao[10], char periodo[8]){
@@ -151,7 +205,7 @@ int valor (char plano, char tipoAdesao[10], char periodo[8]){
            }else if(strcmp(tipoAdesao, "anual") == 0){
               valor = 298;
            }else{
-              printf("Erro\n")
+              printf("Erro\n");
 	   }
 
            break;
@@ -163,7 +217,6 @@ int valor (char plano, char tipoAdesao[10], char periodo[8]){
         
     }
     
-
     return valor;
 
 }
